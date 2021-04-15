@@ -1,0 +1,25 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "team profile",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itsvnvo/team-profile-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/itsvnvo/team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/itsvnvo/team-profile-generator#readme",
+  "dependencies": {
+    "static-site": "^1.3.5"
+  }
+}
