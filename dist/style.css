@@ -1,7 +1,17 @@
-h1 {
+h1 
+{
     background-color: grey;
     border: 10px;
     margin: 10px;
     padding: 10px;
     text-align: center;
 }
+
+.card 
+{
+    background-color:rgb(255, 255, 255);
+    padding: 10;
+    border: solid black;
+    font-size: x-large;
+}
+

@@ -1,3 +1,6 @@
+function generateHTML(data) {
+    console.log('this is the html', response)
+    return `
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,9 +28,9 @@
                         </div>
                         <div class="card-body">
                             <ul>
-                                <li>ID: 1</li>
-                                <li>Email: test@test</li>
-                                <li>Office Number: 11111</li>
+                                <li>ID: ${response.id}</li>
+                                <li>Email: ${response.email}</li>
+                                <li>Office Number: ${response.officeNumber}</li>
                             </ul>
                         </div>
                     </div>
@@ -37,9 +40,9 @@
                         </div>
                         <div class="card-body">
                             <ul>
-                                <li>ID: 2</li>
-                                <li>Email: test2@test</li>
-                                <li>github: test</li>
+                                <li>ID: ${response2.id}</li>
+                                <li>Email: ${response2.email}</li>
+                                <li>github: ${response2.github}</li>
                             </ul>
                         </div>
                     </div>
@@ -49,9 +52,9 @@
                         </div>
                         <div class="card-body">
                             <ul>
-                                <li>ID: 3</li>
-                                <li>Email: test3@test</li>
-                                <li>School: SMU</li>
+                                <li>ID: ${response3.id}</li>
+                                <li>Email: ${response3.email}</li>
+                                <li>School: ${response3.school}</li>
                             </ul>
                         </div>
                     </div>
@@ -64,3 +67,8 @@
 </body>
 
 </html>
+`
+}
+
+
+module.exports = generateHTML;
