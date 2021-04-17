@@ -121,7 +121,7 @@ async function promptQuestions() {
         } catch (err) {
             return console.log(err);
         }
-    } while (done.addTeam === "Yep");
+    } while (response2.addTeam === "Yep");
 }
 
 
@@ -130,17 +130,11 @@ async function promptQuestions() {
 async function init() {
     try {
          await promptQuestions()
-
          for (let i = 0; i < teamArray.length; i++) {
               teamDisplay = teamDisplay + HTML.generateCard(teamArray[i]);
          }
-         
          let writeHtml = HTML.generateHTML(teamDisplay)
-
-
          writeFileAsync("index.html", writeHtml)
-
-
     } catch (err) {
          return console.log(err);
     }
