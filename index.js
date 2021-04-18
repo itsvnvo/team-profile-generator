@@ -12,7 +12,7 @@ let teamDisplay = ``;
 
 const writeFileAsync = util.promisify(fs.writeFile);
 
-function promptQuestions() {
+async function promptQuestions() {
     do {
         try {
             response = await inquirer.prompt([{
@@ -91,8 +91,6 @@ function promptQuestions() {
             return console.log(err);
         }
     } while (response2.addTeam === "Yep");
-    console.log('Data of response 2', response2)
-    console.log('Data of response', response)
 }
 
 
