@@ -24,9 +24,9 @@ it('should display email', () => {
 });
 
 it('should display role', () => {
-    const title = "Manager";
-    const e = new manager("name", 1, title);
-    expect(e.role).toBe(title);
+    const role = "Manager";
+    const e = new manager("name", 1, role);
+    expect(e.role).toBe(role);
 });
 
 if('should display number', () => {

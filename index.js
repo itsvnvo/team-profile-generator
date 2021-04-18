@@ -12,66 +12,50 @@ let teamDisplay = ``;
 
 const writeFileAsync = util.promisify(fs.writeFile);
 
-async function promptQuestions() {
-    let done = "";
+function promptQuestions() {
     do {
         try {
-            response = await inquirer.prompt([
-                {
-                    type: 'list',
-                    name: 'role',
-                    message: 'What is your role?',
-                    choices: ['Manager', 'Engineer', "Intern"]
-                }
+            response = await inquirer.prompt([{
+                type: 'input',
+                name: 'name',
+                message: 'What is your name?',
+            },
+            {
+                type: 'input',
+                name: 'id',
+                message: 'What is your Id?',
+
+            },
+            {
+                type: 'input',
+                name: 'email',
+                message: 'What is your Email?',
+            },
+            {
+                type: 'list',
+                name: 'role',
+                message: 'What is your role?',
+                choices: ['Manager', 'Engineer', "Intern"]
+            }
             ])
             if (response.role === "Manager") {
-                response2 = await inquirer.prompt([{
-                    type: 'input',
-                    name: 'name',
-                    message: 'What is team managers name?',
-                },
-                {
-                    type: 'input',
-                    name: 'id',
-                    message: 'What is your Id?',
-
-                },
-                {
-                    type: 'input',
-                    name: 'email',
-                    message: 'What is your Email?',
-                },
-                {
-                    type: 'input',
-                    name: 'officeNumber',
-                    message: 'What is your office number?',
-                },
-                {
-                    type: 'list',
-                    name: 'addTeam',
-                    message: 'Would you like to add another team member?',
-                    choices: ['Yep', 'Nope']
-                },
+                response2 = await inquirer.prompt([
+                    {
+                        type: 'input',
+                        name: 'officeNumber',
+                        message: 'What is your office number?',
+                    },
+                    {
+                        type: 'list',
+                        name: 'addTeam',
+                        message: 'Would you like to add another team member?',
+                        choices: ['Yep', 'Nope']
+                    },
                 ]);
                 const manager = new Manager(response.name, response.id, response.email, response2.officeNumber);
                 teamArray.push(manager);
             } else if (response.role === "Engineer") {
-                response2 = await inquirer.prompt([{
-                    type: 'input',
-                    name: 'name',
-                    message: 'What is the Engineers name?',
-                },
-                {
-                    type: 'input',
-                    name: 'id',
-                    message: 'What is your Id?',
-
-                },
-                {
-                    type: 'input',
-                    name: 'email',
-                    message: 'What is your Email?',
-                },
+                response2 = await inquirer.prompt([
                 {
                     type: "input",
                     name: "github",
@@ -87,22 +71,7 @@ async function promptQuestions() {
                 const engineer = new Engineer(response.name, response.id, response.email, response2.github);
                 teamArray.push(engineer);
             } else if (response.role === "Intern") {
-                response2 = await inquirer.prompt([{
-                    type: 'input',
-                    name: 'name',
-                    message: 'What is the Interns name?',
-                },
-                {
-                    type: 'input',
-                    name: 'id',
-                    message: 'What is your Id?',
-
-                },
-                {
-                    type: 'input',
-                    name: 'email',
-                    message: 'What is your Email?',
-                },
+                response2 = await inquirer.prompt([
                 {
                     type: "input",
                     name: "school",
@@ -112,16 +81,18 @@ async function promptQuestions() {
                     type: 'list',
                     name: 'addTeam',
                     message: 'Would you like to add another team member?',
-                    choices: ['Yep','Nope']
+                    choices: ['Yep', 'Nope']
                 },
                 ]);
-                const intern = new Intern(response.name, response.id, response.email, response.school);
+                const intern = new Intern(response.name, response.id, response.email, response2.school);
                 teamArray.push(intern);
             }
         } catch (err) {
             return console.log(err);
         }
     } while (response2.addTeam === "Yep");
+    console.log('Data of response 2', response2)
+    console.log('Data of response', response)
 }
 
 
@@ -129,14 +100,14 @@ async function promptQuestions() {
 
 async function init() {
     try {
-         await promptQuestions()
-         for (let i = 0; i < teamArray.length; i++) {
-              teamDisplay = teamDisplay + HTML.generateCard(teamArray[i]);
-         }
-         let writeHtml = HTML.generateHTML(teamDisplay)
-         writeFileAsync("index.html", writeHtml)
+        await promptQuestions()
+        for (let i = 0; i < teamArray.length; i++) {
+            teamDisplay = teamDisplay + HTML.generateCard(teamArray[i]);
+        }
+        let writeHtml = HTML.generateHTML(teamDisplay)
+        writeFileAsync("index.html", writeHtml)
     } catch (err) {
-         return console.log(err);
+        return console.log(err);
     }
 
 };

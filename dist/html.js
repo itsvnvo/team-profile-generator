@@ -1,5 +1,5 @@
-const generateHTML = function (teamDisplay) {
-    console.log("html info");
+const generateHTML = function (teamCard) {
+    console.log("You made a html");
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -8,18 +8,20 @@ const generateHTML = function (teamDisplay) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link href="style.css" rel="stylesheet">
+        <link href="./dist/style.css" rel="stylesheet">
     
     </head>
-    
+    <div class=header> 
+        <h1>My Team</h1>
+    </div>
     <body>
         </div>
-            <div class="container-body">
-            ${teamDisplay} 
+            <div class="container">
+                <div class="row">
+            ${teamCard} 
             </div>
         </div>
     </body>
-
 </html>`
 
 }
@@ -31,7 +33,7 @@ const generateCard = function (data) {
     if (data.role === "Manager") {
         teamEl = `Office Number: ${response2.officeNumber}`
     } else if (data.role === "Engineer") {
-        teamEl = `Github Username: <a href="https://github.com/${response2.github}"></a>`
+        teamEl = `Github Username: <a href="https://github.com/${response2.github}">https://github.com/${response2.github}</a>`
     } else if (data.role === "Intern") {
         teamEl = `School: ${response2.school}`
     }
@@ -39,13 +41,13 @@ const generateCard = function (data) {
     return `
         <div class="card">
             <div class="card-header">
-                <h2>${response2.name}</h2>  
+                <h2>${response.name}</h2>  
                 <h2> ${data.role}</h2>
             </div>
         <div class="card-body">
              <ul>
-                <li>ID: ${response2.id}</li>
-                <li>Email:<a href="mailto:${response2.email}">${response2.email}</a></li>
+                <li>ID: ${response.id}</li>
+                <li>Email:<a href="mailto:${response.email}">${response.email}</a></li>
                 <li>${teamEl}</li>
             </ul>
          </div>
